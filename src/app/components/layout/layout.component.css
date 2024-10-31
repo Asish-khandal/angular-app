@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.todo-container {
+  width: 550px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  text-align: center;
+  margin: 10px auto;
+}
+
+.todo-header,
+h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.task-input {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.input-task {
+  width: 70%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  font-size: 16px;
+  outline: none;
+}
+
+.add-task-btn {
+  padding: 10px 20px;
+  background-color: #4c6ef5;
+  color: #fff;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-task-btn:hover {
+  background-color: #3a58d3;
+}
+
+.task-list {
+  margin-top: 10px;
+}
+
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.task-table th,
+.task-table td {
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.task-table th {
+  background-color: #f4f6f9;
+  color: #333;
+}
+
+.task-table tr:hover {
+  background-color: #f9fafb;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 6px 12px;
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.edit-btn {
+  background-color: #ffd966;
+  color: #333;
+}
+
+.edit-btn:hover {
+  background-color: #ffcc33;
+}
+
+.delete-btn {
+  background-color: #ff5c5c;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background-color: #ff3232;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.task-title {
+  text-align: left !important;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  text-align: center;
+}
+
+.modal-content input {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+
+.modal-content button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+}
