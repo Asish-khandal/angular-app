@@ -1,0 +1,14 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/">ToDo App</a>
+  </div>
+  <div class="navbar-links">
+    <a routerLink="/layout" (click)="navigateTo('/layout')">Home</a>
+    <a routerLink="/about-us" (click)="navigateTo('/about-us')">About Us</a>
+    <a routerLink="/admin" (click)="navigateTo('/admin')">Admin</a>
+    <a routerLink="/layout/add" (click)="navigateTo('/layout/add')">Add Todo</a>
+    <a routerLink="/layout/list" (click)="navigateTo('/layout/list')"
+      >Todo List</a
+    >
+  </div>
+</nav>
