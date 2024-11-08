@@ -22,8 +22,19 @@ export const routes: Routes = [
       ),
   },
   {
+    path: "",
+    loadComponent: () =>
+      import("./components/about-us/about-us.component").then(
+        (c) => c.AboutUsComponent
+      ),
+  },
+  {
     path: "admin",
     loadChildren: () =>
       import("./admin/admin.module").then((m) => m.AdminModule),
+  },
+  {
+    path: "shop",
+    loadChildren: () => import("./shop/shop.module").then((m) => m.ShopModule),
   },
 ];

@@ -8,7 +8,7 @@ import { RouterLink } from "@angular/router";
 @Component({
   selector: "app-layout",
   standalone: true,
-  imports: [FormsModule, SlicePipe, CommonModule, RouterLink],
+  imports: [FormsModule, SlicePipe, CommonModule],
   templateUrl: "./layout.component.html",
   styleUrl: "./layout.component.css",
 })

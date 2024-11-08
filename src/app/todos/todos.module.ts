@@ -4,6 +4,7 @@ import { TodosRoutingModule } from "./todos.routing.module";
 import { LayoutComponent } from "./layout/layout.component";
 import { AddTodoComponent } from "./add-todo/add-todo.component";
 import { TodoListComponent } from "./todo-list/todo-list.component";
+import { StoreModule } from "@ngrx/store";
 
 @NgModule({
   declarations: [],
@@ -12,7 +13,6 @@ import { TodoListComponent } from "./todo-list/todo-list.component";
     TodosRoutingModule,
     LayoutComponent,
     AddTodoComponent,
-    TodoListComponent,
   ],
 })
 export class TodosModule {}

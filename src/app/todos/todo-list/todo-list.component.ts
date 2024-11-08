@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+
+import { AsyncPipe, CommonModule } from "@angular/common";
 
 @Component({
-  selector: 'app-todo-list',
+  selector: "app-todo-list",
   standalone: true,
-  imports: [],
-  templateUrl: './todo-list.component.html',
-  styleUrl: './todo-list.component.css'
+  imports: [CommonModule, AsyncPipe],
+  templateUrl: "./todo-list.component.html",
+  styleUrl: "./todo-list.component.css",
 })
-export class TodoListComponent {
-
-}
+export class TodoListComponent {}
