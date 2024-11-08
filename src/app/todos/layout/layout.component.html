@@ -1,0 +1,68 @@
+<div class="wrapper">
+  <div class="todo-container">
+    <h2 class="todo-header">TODO LIST</h2>
+
+    <div class="task-input">
+      <input
+        class="input-task"
+        [(ngModel)]="newTodo.title"
+        type="text"
+        placeholder="Enter task title"
+      />
+      <button class="add-task-btn" (click)="onAdd()">Add Task</button>
+    </div>
+
+    <div class="task-list">
+      <table class="task-table">
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Completed</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(item of toDosList | slice:0:5; track $index){
+          <tr>
+            <td class="task-title" [ngClass]="{ completed: item.completed }">
+              {{ item.title }}
+            </td>
+            <td>
+              <input
+                type="checkbox"
+                [checked]="item.completed"
+                (change)="toggleStrike(item)"
+              />
+            </td>
+            <td>
+              <button class="edit-btn" (click)="openEditDialog(item)">
+                <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+              </button>
+              <button class="delete-btn" (click)="onDeleteTask(item.id)">
+                <i class="fa-solid fa-trash" aria-hidden="true"></i>
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Modal for editing a Todos -->
+    @if(editMode && todoToEdit ){
+    <div class="modal">
+      <div class="modal-content">
+        <h3>Edit Task</h3>
+        <input
+          type="text"
+          [(ngModel)]="todoToEdit.title"
+          placeholder="Edit task title"
+        />
+        <button class="edit-btn" (click)="onUpdate()">Update Task</button>
+        <button class="delete-btn" (click)="closeEditDialog()">Cancel</button>
+      </div>
+    </div>
+
+    }
+  </div>
+</div>

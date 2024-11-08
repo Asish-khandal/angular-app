@@ -1,0 +1,54 @@
+# compiled output
+/dist
+/dist-temp
+/tmp
+/out-tsc
+
+graphql.config.yml
+
+# dependencies
+/node_modules
+/node_modules-bkp
+
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.angular
+.vscode/
+.nx/cache
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
+
+# misc
+/.angular/cache
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+env.ts
+testem.log
+/typings
+
+#env
+
+# System Files
+.DS_Store
+Thumbs.db
+
+#e2e
+/apps/whs-e2e/cypress/downloads
+/apps/whs-e2e/cypress.env.json

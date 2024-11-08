@@ -1,0 +1,25 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #02264b;
+  color: white;
+}
+
+.navbar-brand a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.navbar-links a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.navbar-links a:hover {
+  color: #ffcc00;
+}
