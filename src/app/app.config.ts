@@ -13,6 +13,8 @@ import { provideStoreDevtools } from "@ngrx/store-devtools";
 import { groceryReducer } from "./store/reducers/grocery.reducer";
 import { bucketReducer } from "./store/reducers/bucket.reducer";
 import { ShopEffect } from "./store/effects/grocery.effect";
+import { todosReducer } from "./store/reducers/todos.reducer";
+import { TodosEffects } from "./store/effects/todos.effects";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,8 +24,9 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       groceries: groceryReducer,
       myBucket: bucketReducer,
+      todos: todosReducer,
     }),
-    provideEffects(ShopEffect),
+    provideEffects(ShopEffect, TodosEffects),
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states
       logOnly: !isDevMode(), // Restrict extension to log-only mode

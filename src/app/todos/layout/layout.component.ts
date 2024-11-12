@@ -4,6 +4,10 @@ import { MasterService } from "../../services/master.service";
 import { Itodos } from "../../model/interface/todos";
 import { FormsModule } from "@angular/forms";
 import { RouterLink } from "@angular/router";
+import * as TodosActions from "../../store/actions/todos.actions";
+import { Store } from "@ngrx/store";
+import { loadTodos } from "../../store/actions/todos.actions";
+import { selectAllTodos } from "../../store/selectors/todos.selectors";
 
 @Component({
   selector: "app-layout",
@@ -12,31 +16,42 @@ import { RouterLink } from "@angular/router";
   templateUrl: "./layout.component.html",
   styleUrl: "./layout.component.css",
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent {
   masterService = inject(MasterService);
   toDosList: Itodos[] = [];
   newTodo: Itodos = { userId: 1, id: 0, title: "", completed: false };
-  todoToEdit: Itodos | null = null;
+  todoToEdit!: Itodos;
   editMode: boolean = false;
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.loadTask();
-  }
-
-  loadTask() {
-    this.masterService.getAllToDos().subscribe((res: Itodos[]) => {
+    this.store.select(selectAllTodos).subscribe((res: any) => {
       this.toDosList = res;
     });
   }
 
+  // loadTask() {
+  //   this.store.dispatch(loadTodos());
+  //   // this.masterService.getAllToDos().subscribe((res: Itodos[]) => {
+  //   //   this.toDosList = res;
+  //   // });
+  // }
+
+  // onDeleteTask(id: number) {
+  //   const isDelete = confirm("Are you sure you want to delete?");
+  //   if (isDelete) {
+  //     this.masterService.deleteToDosById(id).subscribe((res: Itodos[]) => {
+  //       alert("Todos deleted successfully");
+
+  //       this.toDosList = this.toDosList.filter((item) => item.id !== id);
+  //     });
+  //   }
+  // }
+
   onDeleteTask(id: number) {
     const isDelete = confirm("Are you sure you want to delete?");
     if (isDelete) {
-      this.masterService.deleteToDosById(id).subscribe((res: Itodos[]) => {
-        alert("Todos deleted successfully");
-
-        this.toDosList = this.toDosList.filter((item) => item.id !== id);
-      });
+      this.store.dispatch(TodosActions.deleteTodo({ id }));
     }
   }
 
@@ -46,6 +61,9 @@ export class LayoutComponent implements OnInit {
       return;
     }
 
+    this.store.dispatch(TodosActions.addTodo({ todo: this.newTodo }));
+    // // Reset input field after dispatching the action
+    // this.newTodo = { userId: 1, id: 0, title: "", completed: false };
     this.masterService.addToDos(this.newTodo).subscribe({
       next: (res: Itodos) => {
         alert("Todo added successfully");
@@ -67,23 +85,40 @@ export class LayoutComponent implements OnInit {
 
   closeEditDialog() {
     this.editMode = false;
-    this.todoToEdit = null;
+    // this.todoToEdit = null;
   }
+
+  // onUpdate() {
+  //   if (this.todoToEdit) {
+  //     const index = this.toDosList.findIndex(
+  //       (item) => item.id === this.todoToEdit!.id
+  //     );
+  //     if (index > -1) {
+  //       this.toDosList[index] = { ...this.todoToEdit };
+  //     }
+  //     this.closeEditDialog();
+  //     alert("Todo updated successfully");
+  //   }
+  // }
 
   onUpdate() {
     if (this.todoToEdit) {
-      const index = this.toDosList.findIndex(
-        (item) => item.id === this.todoToEdit!.id
-      );
-      if (index > -1) {
-        this.toDosList[index] = { ...this.todoToEdit };
-      }
+      // Dispatch the edit action to update the todo in the NgRx store
+      this.store.dispatch(TodosActions.editTodo({ todo: this.todoToEdit }));
       this.closeEditDialog();
       alert("Todo updated successfully");
     }
   }
 
   toggleStrike(item: Itodos) {
-    item.completed = !item.completed;
+    // item.completed = !item.completed;
+
+    // Dispatch the action to update the 'completed' status of the todo
+    this.store.dispatch(
+      TodosActions.toggleTodoCompletion({
+        id: item.id,
+        completed: !item.completed,
+      })
+    );
   }
 }
